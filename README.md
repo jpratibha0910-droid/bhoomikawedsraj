@@ -47,7 +47,7 @@ An interactive, responsive digital wedding invitation celebrating **Bhoomika & R
 ├── videos/                # Celebration portrait reels
 │   ├── haldi1.mp4
 │   ├── sangeet1.mp4
-│   ├── mayra.mp4
+│   ├── mayra1.mp4
 │   ├── varmala.mp4
 │   └── reception.mp4
 ├── .gitignore             # Ignored temporary and OS files
