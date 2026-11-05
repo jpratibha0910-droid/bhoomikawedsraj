@@ -10,7 +10,7 @@ An interactive, responsive digital wedding invitation celebrating **Bhoomika & R
 ## 🌟 Features
 
 * **Wax Seal Envelope Opening**: Realistic envelope with a bespoke **B & R** monogram stamped in gold wax that splits realistically when clicked to reveal the invitation.
-* **Ambient Harp & Strings Audio**: Soft Web Audio API harp arpeggios and string pads with toggle control.
+* **Ambient Background Music**: Wedding background music extracted and optimized for seamless playback across all mobile and desktop browsers with interactive play/pause toggle.
 * **5 Celebration Video Cards**: Autoplaying, looping portrait videos:
   1. *Rang sari* (Carnival)
   2. *Nachde ne saare* (Sangeet)
@@ -34,6 +34,9 @@ An interactive, responsive digital wedding invitation celebrating **Bhoomika & R
 ```
 ├── index.html             # Main website entry point
 ├── bhoomika.html          # Synchronized template page
+├── audio/                 # Background music
+│   ├── bg-music.mp3       # Optimized audio track (128 kbps stereo)
+│   └── bg-music.m4a       # High quality AAC audio track
 ├── images/                # Watercolors, floral decorations, photos & B&R monogram
 │   ├── floral1.webp
 │   ├── floral2.webp
@@ -45,11 +48,11 @@ An interactive, responsive digital wedding invitation celebrating **Bhoomika & R
 │   ├── venue.jpeg
 │   └── wash-*.webp        # Pastel watercolor background washes
 ├── videos/                # Celebration portrait reels
-│   ├── haldi1.mp4
-│   ├── sangeet1.mp4
-│   ├── mayra1.mp4
-│   ├── varmala.mp4
-│   └── reception.mp4
+│   ├── haldi2.mp4         # Rang sari (Carnival / Haldi)
+│   ├── sangeet1.mp4       # Nachde ne saare (Sangeet)
+│   ├── mayra2.mp4         # Bhaat ki Reet (Mayra)
+│   ├── varmala.mp4        # Lagan la gyi re (Shaadi / Varmala)
+│   └── reception.mp4      # Reception
 ├── .gitignore             # Ignored temporary and OS files
 └── README.md              # Project documentation
 ```
