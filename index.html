@@ -231,7 +231,7 @@
     .mono {
       display: block;
       margin: 0 auto;
-      aspect-ratio: 445/560;
+      aspect-ratio: 410/508;
       -webkit-mask: url(images/monogram.png) center/contain no-repeat;
       mask: url(images/monogram.png) center/contain no-repeat;
       background: linear-gradient(100deg, #8C6A2B 0%, #C9A45E 22%, #A07C38 40%, #F2DFA8 50%, #A07C38 60%, #C9A45E 80%, #8C6A2B 100%);
@@ -672,7 +672,7 @@
       left: 50%;
       top: 50%;
       width: 44%;
-      aspect-ratio: 445/560;
+      aspect-ratio: 410/508;
       transform: translate(-50%, -50%);
       -webkit-mask: url(images/monogram.png) center/contain no-repeat;
       mask: url(images/monogram.png) center/contain no-repeat
@@ -794,20 +794,35 @@
     .couple {
       font-family: var(--script);
       font-weight: 400;
-      font-size: clamp(3.2rem, 14vw, 5.6rem);
+      font-size: clamp(2.4rem, 10vw, 5.2rem);
       line-height: 1.1;
       margin: 6px 0 0;
       color: var(--ink);
-      text-wrap: balance
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: clamp(6px, 1.8vw, 14px);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .couple .bride,
+    .couple .groom {
+      display: inline-block;
+      line-height: 1;
     }
 
     .couple .weds {
       font-family: var(--serif);
       font-style: italic;
-      font-size: .3em;
+      font-size: clamp(0.9rem, 3.2vw, 1.4rem);
       color: var(--gold);
-      vertical-align: middle;
-      margin: 0 .35em
+      -webkit-text-fill-color: var(--gold);
+      margin: 0;
+      align-self: center;
+      line-height: 1;
+      display: inline-block;
+      transform: translateY(2px);
     }
 
     .scratch-box {
@@ -2166,6 +2181,15 @@
         letter-spacing: .18em;
       }
 
+      .couple {
+        font-size: 2.7rem;
+        gap: 8px;
+      }
+
+      .couple .weds {
+        font-size: 1.05rem;
+      }
+
       .venue-card {
         padding: 22px 14px 20px;
         margin-top: -50px;
@@ -2329,7 +2353,7 @@
       <div class="wrap hero-inner">
         <span class="mono" role="img" aria-label="Raj and Bhoomika monogram"></span>
         <p class="eyebrow">Together with their families</p>
-        <h1 class="couple sheen-text">Bhoomika<span class="weds">weds</span>Raj</h1>
+        <h1 class="couple sheen-text"><span class="bride">Bhoomika</span><span class="weds">weds</span><span class="groom">Raj</span></h1>
         <div class="ornament" aria-hidden="true"><span>✦</span></div>
         <p class="eyebrow">We are getting married</p>
         <div class="scratch-box">
@@ -2363,16 +2387,16 @@
         <div class="ornament" aria-hidden="true"><span>✦</span></div>
         <div class="fam-grid">
           <div class="fam">
-            <h3>Raj</h3>
-            <p class="rel">Son of</p>
-            <p>Mr. Rupesh Godha &amp; Mrs. Tulika Godha</p>
+            <h3>Bhoomika</h3>
+            <p class="rel">Daughter of</p>
+            <p>Mrs. Babita Kasliwal &amp; Mr. Sudhir Kasliwal</p>
 
           </div>
           <div class="fam-mid" aria-hidden="true"></div>
           <div class="fam">
-            <h3>Bhoomika</h3>
-            <p class="rel">Daughter of</p>
-            <p>Mr. Sudhir Kasliwal &amp; Mrs. Babita Kasliwal</p>
+            <h3>Raj</h3>
+            <p class="rel">Son of</p>
+            <p>Mrs. Tulika Godha &amp; Mr. Rupesh Godha</p>
 
           </div>
         </div>
