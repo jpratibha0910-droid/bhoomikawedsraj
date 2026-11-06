@@ -794,35 +794,42 @@
     .couple {
       font-family: var(--script);
       font-weight: 400;
-      font-size: clamp(2.4rem, 10vw, 5.2rem);
+      font-size: clamp(2.2rem, 8.5vw, 4.8rem);
       line-height: 1.1;
       margin: 6px 0 0;
       color: var(--ink);
       display: flex;
       align-items: baseline;
       justify-content: center;
-      gap: clamp(6px, 1.8vw, 14px);
+      gap: clamp(10px, 2.5vw, 20px);
       text-align: center;
       white-space: nowrap;
     }
 
-    .couple .bride,
+    .couple .bride {
+      display: inline-block;
+      line-height: 1;
+      padding-right: clamp(12px, 3vw, 24px);
+    }
+
     .couple .groom {
       display: inline-block;
       line-height: 1;
+      padding-left: clamp(8px, 2vw, 16px);
     }
 
     .couple .weds {
       font-family: var(--serif);
       font-style: italic;
-      font-size: clamp(0.9rem, 3.2vw, 1.4rem);
+      font-size: clamp(0.85rem, 2.8vw, 1.35rem);
       color: var(--gold);
       -webkit-text-fill-color: var(--gold);
-      margin: 0;
+      margin: 0 clamp(4px, 1vw, 10px);
       align-self: center;
       line-height: 1;
       display: inline-block;
       transform: translateY(2px);
+      letter-spacing: 0.05em;
     }
 
     .scratch-box {
@@ -2182,12 +2189,21 @@
       }
 
       .couple {
-        font-size: 2.7rem;
+        font-size: 2.35rem;
         gap: 8px;
       }
 
+      .couple .bride {
+        padding-right: 16px;
+      }
+
+      .couple .groom {
+        padding-left: 10px;
+      }
+
       .couple .weds {
-        font-size: 1.05rem;
+        font-size: 0.95rem;
+        margin: 0 4px;
       }
 
       .venue-card {
