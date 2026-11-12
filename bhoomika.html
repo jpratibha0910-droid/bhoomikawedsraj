@@ -816,7 +816,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: clamp(8px, 2vw, 18px);
+      gap: clamp(4px, 1vw, 8px);
       text-align: center;
       white-space: nowrap;
       overflow: visible;
@@ -827,22 +827,29 @@
       display: inline-block;
       line-height: 1.35;
       padding-block: 0.2em 0.35em;
-      padding-inline: clamp(10px, 2.5vw, 22px) clamp(16px, 4vw, 32px);
       overflow: visible;
+    }
+
+    .couple .bride {
+      padding-inline: clamp(6px, 1.5vw, 12px) clamp(4px, 1vw, 8px);
+    }
+
+    .couple .groom {
+      padding-inline: clamp(6px, 1.2vw, 10px) clamp(6px, 1.5vw, 12px);
     }
 
     .couple .weds {
       font-family: var(--serif);
       font-style: italic;
       font-weight: 500;
-      font-size: clamp(1.4rem, 4.2vw, 2.3rem);
+      font-size: clamp(1.8rem, 5.5vw, 3.2rem);
       color: var(--gold);
       -webkit-text-fill-color: var(--gold);
-      margin: 0 clamp(8px, 1.8vw, 16px);
+      margin: 0 2px;
       align-self: center;
       line-height: 1;
       display: inline-block;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
     }
 
     .scratch-box {
@@ -2243,7 +2250,7 @@
       .couple {
         font-size: 2.35rem;
         line-height: 1.35;
-        gap: 4px;
+        gap: 3px;
         overflow: visible;
       }
 
@@ -2255,16 +2262,16 @@
       }
 
       .couple .bride {
-        padding-inline: 8px 18px;
+        padding-inline: 6px 4px;
       }
 
       .couple .groom {
-        padding-inline: 8px 18px;
+        padding-inline: 6px 6px;
       }
 
       .couple .weds {
-        font-size: 1.45rem;
-        margin: 0 8px;
+        font-size: 1.85rem;
+        margin: 0 2px;
       }
 
       .blessing-top {
@@ -2434,7 +2441,7 @@
           height="917"></div>
       <div class="wrap hero-inner">
         <span class="mono" role="img" aria-label="Raj and Bhoomika monogram"></span>
-        <h1 class="couple"><span class="bride sheen-text">Bhoomika</span><span class="weds">weds</span><span
+        <h1 class="couple"><span class="bride sheen-text">Bhoomika</span><span class="weds">Weds</span><span
             class="groom sheen-text">Raj</span></h1>
         <div class="ornament" aria-hidden="true"><span>✦</span></div>
         <p class="eyebrow">Save the Date</p>
@@ -2464,7 +2471,7 @@
       <div class="floral flip" style="right:-44px;bottom:-230px;width:clamp(130px,26vw,250px);--dur:9s;--origin:90% 90%"
         aria-hidden="true"><img src="images/floral3.webp" alt=""></div>
       <div class="wrap">
-        <p class="blessing-top">With the blessings of Late Ganpatraiji Kasliwal &amp; Ratni Devi Kasliwal, we invite you
+        <p class="blessing-top">With the blessings of Late Ganpatraiji Kasliwal &amp; Late Ratni Devi Kasliwal, we invite you
           to celebrate the beginning of our forever.</p>
         <h2>Our Families</h2>
         <div class="ornament" aria-hidden="true"><span>✦</span></div>
@@ -2477,7 +2484,7 @@
               <p class="rel">Granddaughter of</p>
               <p class="elder-sub">Late Shri Ganpatraiji Kasliwal</p>
               <div class="elder-sub-gap"></div>
-              <p class="elder-sub">Late Smt Ratni Devi Kasliwal</p>
+              <p class="elder-sub">Late Smt. Ratni Devi Kasliwal</p>
             </div>
           </div>
           <div class="fam-mid" aria-hidden="true"></div>
@@ -2555,7 +2562,7 @@
 
           <article class="event">
             <div style="text-align: center; margin-bottom: 1.5rem;">
-              <h3 class="sheen-text" style="margin: 0;">Rang sari</h3>
+              <h3 class="sheen-text" style="margin: 0;">Rang Sari</h3>
             </div>
             <div class="art-wrap video-wrap">
               <img class="wash" src="images/wash-blush.webp" alt="">
@@ -2569,7 +2576,7 @@
 
           <article class="event">
             <div style="text-align: center; margin-bottom: 1.5rem;">
-              <h3 class="sheen-text" style="margin: 0;">Nachde ne saare</h3>
+              <h3 class="sheen-text" style="margin: 0;">Nachde Ne Saare</h3>
             </div>
             <div class="art-wrap video-wrap">
               <img class="wash" src="images/wash-peach.webp" alt="">
@@ -2583,7 +2590,7 @@
 
           <article class="event">
             <div style="text-align: center; margin-bottom: 1.5rem;">
-              <h3 class="sheen-text" style="margin: 0;">Bhaat ki Reet</h3>
+              <h3 class="sheen-text" style="margin: 0;">Bhaat Ki Reet</h3>
             </div>
             <div class="art-wrap video-wrap">
               <img class="wash" src="images/wash-sage.webp" alt="">
@@ -2597,7 +2604,7 @@
 
           <article class="event">
             <div style="text-align: center; margin-bottom: 1.5rem;">
-              <h3 class="sheen-text" style="margin: 0;">Lagan la gyi re</h3>
+              <h3 class="sheen-text" style="margin: 0;">Lagan laagi re</h3>
             </div>
             <div class="art-wrap video-wrap">
               <img class="wash" src="images/wash-blush.webp" alt="">
@@ -2967,10 +2974,10 @@
         whatsapp: "918000819043"
       };
       const EVENTS = [
-        { name: "Rang sari" },
-        { name: "Nachde ne saare" },
-        { name: "Bhaat ki Reet" },
-        { name: "Lagan la gyi re" },
+        { name: "Rang Sari" },
+        { name: "Nachde Ne Saare" },
+        { name: "Bhaat Ki Reet" },
+        { name: "Lagan laagi re" },
         { name: "Reception" },
         { name: "Phere" }
       ];
