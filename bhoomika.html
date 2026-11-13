@@ -43,6 +43,32 @@
     [hidden] {
       display: none !important
     }
+    .scroll-invite-hint {
+      margin: 28px auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--ink);
+      font-family: var(--caps);
+      font-size: clamp(0.78rem, 2.2vw, 0.88rem);
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-align: center;
+      opacity: 0.88;
+    }
+
+    .scroll-invite-hint .scroll-icon {
+      color: var(--gold-deep);
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollBounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(6px); }
+      60% { transform: translateY(3px); }
+    }
   </style>
   <title>Bhoomika &amp; Raj Wedding</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -893,7 +919,7 @@
       font-size: .85rem;
       letter-spacing: .22em;
       text-transform: uppercase;
-      color: var(--muted)
+      color: var(--gold-deep)
     }
 
     #scratch {
@@ -2354,7 +2380,7 @@
 
     <div class="env-top">
       <p class="eyebrow">The wedding celebration of</p>
-      <p class="names foil">Bhoomika <span class="amp">&amp;</span> Raj</p>
+      <p class="names">Bhoomika <span class="amp">&amp;</span> Raj</p>
     </div>
 
     <div class="env-stage">
@@ -2459,7 +2485,7 @@
           <div class="scratch-under">
             <span class="small">Tuesday | Wednesday</span>
             <span class="day">15th - 16th December 2026</span>
-            <span class="small">Khanvel Resort Silvassa</span>
+            <span class="small">Gulmohar Suites, Silvassa</span>
           </div>
           <canvas id="scratch" aria-label="Scratch card. Drag across it to reveal the wedding date" role="img"></canvas>
         </div>
@@ -2468,6 +2494,13 @@
           <div><b id="cd-h">00</b><span>Hours</span></div>
           <div><b id="cd-m">00</b><span>Minutes</span></div>
           <div><b id="cd-s">00</b><span>Seconds</span></div>
+        </div>
+
+        <div class="scroll-invite-hint" aria-label="Scroll down to read the card invite">
+          <span>Scroll down to read the wedding invite</span>
+          <svg viewBox="0 0 24 24" class="scroll-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 10l5 5 5-5" />
+          </svg>
         </div>
       </div>
     </section>
@@ -2613,9 +2646,7 @@
             <div class="art-wrap video-wrap">
               <img class="wash" src="images/wash-blush.webp" alt="">
               <div class="video-card art">
-                <video autoplay muted loop playsinline preload="auto">
-                  <source src="videos/wedding.mp4" type="video/mp4">
-                </video>
+                <img src="images/wedding.jpg" alt="Lagan laagi re - Wedding" loading="lazy">
               </div>
             </div>
           </article>
@@ -2876,12 +2907,6 @@
               <span class="rsvp-hint">This becomes a digital memory book.</span>
             </div>
 
-            <!-- Card 5: Words for Forever -->
-            <div class="rsvp-card-block">
-              <h3>Words for Forever</h3>
-              <p class="rsvp-sub-title">Advice for married life...</p>
-              <textarea class="rsvp-textarea" id="r-advice" rows="2" placeholder="One piece of advice..."></textarea>
-            </div>
 
             <button class="btn-send-love" type="submit">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
@@ -2894,22 +2919,7 @@
           </form>
         </div>
 
-        <!-- ================= Share the Memories ================= -->
-        <div class="share-memories-card">
-          <div class="ornament" aria-hidden="true" style="margin-bottom:12px;"><span>✦</span></div>
-          <h3>Share the Memories</h3>
-          <p>Help us capture the magic! Please upload any photos or videos you take during the celebrations to our
-            shared folder.</p>
-          <a class="btn-drive-upload" href="https://drive.google.com" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="17 8 12 3 7 8" />
-              <line x1="12" y1="3" x2="12" y2="15" />
-            </svg>
-            Upload to Google Drive
-          </a>
-        </div>
+
       </div>
     </section>
 
@@ -3050,12 +3060,12 @@
         g.addColorStop(0, "#E9B9C2"); g.addColorStop(.55, "#DDB7C9"); g.addColorStop(1, "#D6B67C");
         ctx.globalCompositeOperation = "source-over"; ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
         for (let i = 0; i < 90; i++) { ctx.fillStyle = `rgba(255,248,230,${(Math.random() * 0.7 + 0.2).toFixed(2)})`; ctx.beginPath(); ctx.arc(Math.random() * w, Math.random() * h, (Math.random() * 1.3 + 0.3) * dpr, 0, 7); ctx.fill(); }
-        ctx.strokeStyle = "rgba(255,248,230,.8)"; ctx.lineWidth = 1 * dpr; ctx.strokeRect(8 * dpr, 8 * dpr, w - 16 * dpr, h - 16 * dpr);
-        ctx.fillStyle = "#FFFFFF"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+        ctx.strokeStyle = "rgba(140, 106, 43, 0.45)"; ctx.lineWidth = 1 * dpr; ctx.strokeRect(8 * dpr, 8 * dpr, w - 16 * dpr, h - 16 * dpr);
+        ctx.fillStyle = "#3D3957"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
         ctx.font = `600 ${17 * dpr}px "Cormorant SC", Georgia, serif`;
         ctx.fillText("✦  SCRATCH TO REVEAL  ✦", w / 2, h / 2 - 11 * dpr);
         ctx.font = `italic 500 ${19 * dpr}px "Cormorant Garamond", Georgia, serif`;
-        ctx.fillStyle = "#FFF6E6"; ctx.fillText("our special day", w / 2, h / 2 + 15 * dpr);
+        ctx.fillStyle = "#6E4E1B"; ctx.fillText("our special day", w / 2, h / 2 + 15 * dpr);
       }
       function sizeScratch() {
         if (scratched) return;
@@ -3167,7 +3177,6 @@
         const emotional = document.querySelector('input[name="emotional"]:checked')?.value || "Both";
         const mood = document.querySelector('input[name="mood"]:checked')?.value || "All of It";
         const note = $("#r-note") ? $("#r-note").value.trim() : "";
-        const advice = $("#r-advice") ? $("#r-advice").value.trim() : "";
 
         let msg = "";
         if (yes) {
@@ -3180,7 +3189,7 @@
             `🥺 Who will get emotional first: ${emotional}\n` +
             `💃 Wedding Mood: ${mood}\n` +
             (note ? `💌 Note / Wish: "${note}"\n` : "") +
-            (advice ? `💡 Advice for Forever: "${advice}"\n` : "");
+
         } else {
           msg = `RSVP for ${WEDDING.couple[0]} & ${WEDDING.couple[1]}'s wedding\n\n` +
             `👤 Name: ${name}\n` +
