@@ -43,7 +43,34 @@
     [hidden] {
       display: none !important
     }
-  </style>
+  
+    .scroll-invite-hint {
+      margin: 28px auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--ink);
+      font-family: var(--caps);
+      font-size: clamp(0.78rem, 2.2vw, 0.88rem);
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-align: center;
+      opacity: 0.88;
+    }
+
+    .scroll-invite-hint .scroll-icon {
+      color: var(--gold-deep);
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollBounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(6px); }
+      60% { transform: translateY(3px); }
+    }
+</style>
   <title>Bhoomika &amp; Raj Wedding</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -336,13 +363,14 @@
     }
 
     .amp {
-      font-family: var(--serif);
-      font-style: italic;
-      font-weight: 500;
+      font-family: var(--script);
+      font-style: normal;
+      font-weight: 400;
       display: inline-block;
       padding-inline: 0.14em;
       line-height: 1;
-      vertical-align: 0.02em;
+      vertical-align: 0;
+      color: inherit;
     }
 
     .env-top .names {
@@ -353,6 +381,7 @@
       padding-block: 0.18em 0.3em;
       padding-inline: 0.2em 0.35em;
       overflow: visible;
+      color: var(--ink);
     }
 
     .env-top .meta {
@@ -732,8 +761,8 @@
       font-size: 1.02rem;
       letter-spacing: .22em;
       text-transform: uppercase;
-      color: #1A1526;
-      -webkit-text-stroke: 0.35px #1A1526;
+      color: var(--gold-deep);
+      
       animation: fade-in 1s ease 2.6s both
     }
 
@@ -849,13 +878,12 @@
       font-style: normal;
       font-weight: 400;
       font-size: clamp(2rem, 6.5vw, 3.8rem);
-      color: var(--gold);
-      -webkit-text-fill-color: var(--gold);
       margin: 0 4px;
       align-self: center;
       line-height: 1.2;
       display: inline-block;
       letter-spacing: 0;
+      padding-block: 0.2em 0.35em;
     }
 
     .scratch-box {
@@ -1332,10 +1360,7 @@
       animation: foil 7s linear infinite
     }
 
-    .sheen-text .weds {
-      -webkit-text-fill-color: var(--gold);
-      color: var(--gold)
-    }
+    /* sheen on weds */
 
     /* ================= Venue ================= */
     .venue-art {
@@ -2254,7 +2279,7 @@
         font-size: .94rem;
         letter-spacing: .18em;
         font-weight: 700;
-        -webkit-text-stroke: 0.35px #1A1526;
+        color: var(--gold-deep);
       }
 
       .couple {
@@ -2354,7 +2379,7 @@
 
     <div class="env-top">
       <p class="eyebrow">The wedding celebration of</p>
-      <p class="names foil">Bhoomika <span class="amp">&amp;</span> Raj</p>
+      <p class="names">Bhoomika <span class="amp">&amp;</span> Raj</p>
     </div>
 
     <div class="env-stage">
@@ -2451,7 +2476,7 @@
           height="917"></div>
       <div class="wrap hero-inner">
         <span class="mono" role="img" aria-label="Raj and Bhoomika monogram"></span>
-        <h1 class="couple"><span class="bride sheen-text">Bhoomika</span><span class="weds">Weds</span><span
+        <h1 class="couple"><span class="bride sheen-text">Bhoomika</span><span class="weds sheen-text">Weds</span><span
             class="groom sheen-text">Raj</span></h1>
         <div class="ornament" aria-hidden="true"><span>✦</span></div>
         <p class="eyebrow">Wedding Date</p>
@@ -2468,6 +2493,13 @@
           <div><b id="cd-h">00</b><span>Hours</span></div>
           <div><b id="cd-m">00</b><span>Minutes</span></div>
           <div><b id="cd-s">00</b><span>Seconds</span></div>
+        </div>
+
+        <div class="scroll-invite-hint" aria-label="Scroll down to read the card invite">
+          <span>Scroll down to read the wedding invite</span>
+          <svg viewBox="0 0 24 24" class="scroll-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 10l5 5 5-5" />
+          </svg>
         </div>
       </div>
     </section>
@@ -3050,12 +3082,12 @@
         g.addColorStop(0, "#E9B9C2"); g.addColorStop(.55, "#DDB7C9"); g.addColorStop(1, "#D6B67C");
         ctx.globalCompositeOperation = "source-over"; ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
         for (let i = 0; i < 90; i++) { ctx.fillStyle = `rgba(255,248,230,${(Math.random() * 0.7 + 0.2).toFixed(2)})`; ctx.beginPath(); ctx.arc(Math.random() * w, Math.random() * h, (Math.random() * 1.3 + 0.3) * dpr, 0, 7); ctx.fill(); }
-        ctx.strokeStyle = "rgba(255,248,230,.8)"; ctx.lineWidth = 1 * dpr; ctx.strokeRect(8 * dpr, 8 * dpr, w - 16 * dpr, h - 16 * dpr);
-        ctx.fillStyle = "#FFFFFF"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+        ctx.strokeStyle = "rgba(140, 106, 43, 0.45)"; ctx.lineWidth = 1 * dpr; ctx.strokeRect(8 * dpr, 8 * dpr, w - 16 * dpr, h - 16 * dpr);
+        ctx.fillStyle = "#8C6A2B"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
         ctx.font = `600 ${17 * dpr}px "Cormorant SC", Georgia, serif`;
         ctx.fillText("✦  SCRATCH TO REVEAL  ✦", w / 2, h / 2 - 11 * dpr);
         ctx.font = `italic 500 ${19 * dpr}px "Cormorant Garamond", Georgia, serif`;
-        ctx.fillStyle = "#FFF6E6"; ctx.fillText("our special day", w / 2, h / 2 + 15 * dpr);
+        ctx.fillStyle = "#8C6A2B"; ctx.fillText("our special day", w / 2, h / 2 + 15 * dpr);
       }
       function sizeScratch() {
         if (scratched) return;
