@@ -2181,7 +2181,7 @@
     }
 
     #confetti {
-      z-index: 60
+      z-index: 9999
     }
 
     #petals {
@@ -3030,9 +3030,8 @@
       /* ================= Cover: gold dust ================= */
       const screen = $("#envelope-screen"), env = $("#env");
       document.body.classList.add("locked");
-      let dustOn = !reduce;
+      let dustOn = true;
       (function () {
-        if (reduce) return;
         const c = $("#dust"), x = c.getContext("2d"); let W, H, dpr, P = [];
         function size() { dpr = Math.min(devicePixelRatio || 1, 2); W = c.width = innerWidth * dpr; H = c.height = innerHeight * dpr; }
         size(); addEventListener("resize", size);
@@ -3068,8 +3067,9 @@
           document.body.classList.remove("locked");
           document.querySelectorAll(".hero-inner > *").forEach((el, i) => { el.style.animationDelay = (i * 0.08) + "s"; el.classList.add("reveal-in"); });
           sizeScratch();
+          confetti();
           setTimeout(() => { dustOn = false; }, 1200);
-        }, reduce ? 50 : 2900);
+        }, 2900);
       });
 
       /* ================= Scratch card ================= */
@@ -3097,47 +3097,142 @@
       }
       function pos(e) { const r = sc.getBoundingClientRect(); const d = sc.width / r.width; return { x: (e.clientX - r.left) * d, y: (e.clientY - r.top) * d }; }
       function scratchAt(p) {
-        ctx.globalCompositeOperation = "destination-out"; ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.lineWidth = sc.width * 0.11;
+        ctx.globalCompositeOperation = "destination-out"; ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.lineWidth = sc.width * 0.12;
         ctx.beginPath(); ctx.moveTo((last || p).x, (last || p).y); ctx.lineTo(p.x, p.y); ctx.stroke(); last = p;
-        if (++moves % 8 === 0) check();
+        moves++;
+        if (moves % 5 === 0) check();
       }
       function check() {
-        const { data } = ctx.getImageData(0, 0, sc.width, sc.height); let clear = 0, total = 0;
-        for (let i = 3; i < data.length; i += 64) { total++; if (data[i] === 0) clear++; }
-        if (clear / total > 0.45) finishScratch();
+        if (scratched) return;
+        try {
+          const { data } = ctx.getImageData(0, 0, sc.width, sc.height);
+          let clear = 0, total = 0;
+          for (let i = 3; i < data.length; i += 64) {
+            total++;
+            if (data[i] < 128) clear++;
+          }
+          if (clear / total > 0.15 || moves > 25) finishScratch();
+        } catch (e) {
+          if (moves > 10) finishScratch();
+        }
       }
-      function finishScratch() { if (scratched) return; scratched = true; sc.classList.add("done"); sc.setAttribute("aria-label", "Wedding date revealed"); confetti(sc); }
-      sc.addEventListener("pointerdown", e => { drawing = true; last = null; sc.setPointerCapture(e.pointerId); scratchAt(pos(e)); });
-      sc.addEventListener("pointermove", e => { if (drawing) scratchAt(pos(e)); });
-      ["pointerup", "pointercancel"].forEach(t => sc.addEventListener(t, () => { drawing = false; last = null; }));
+      function finishScratch() {
+        if (scratched) return;
+        scratched = true;
+        sc.classList.add("done");
+        sc.setAttribute("aria-label", "Wedding date revealed");
+        confetti(sc);
+      }
+      sc.addEventListener("pointerdown", e => {
+        drawing = true;
+        last = null;
+        sc.setPointerCapture(e.pointerId);
+        scratchAt(pos(e));
+      });
+      sc.addEventListener("pointermove", e => {
+        if (drawing) scratchAt(pos(e));
+      });
+      ["pointerup", "pointercancel"].forEach(t => sc.addEventListener(t, () => {
+        drawing = false;
+        last = null;
+        if (!scratched && moves >= 3) check();
+      }));
+      sc.addEventListener("click", () => {
+        if (!scratched) finishScratch();
+      });
       sc.tabIndex = 0;
-      sc.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); finishScratch(); } });
+      sc.addEventListener("keydown", e => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          finishScratch();
+        }
+      });
       addEventListener("resize", () => { if (!scratched) sizeScratch(); });
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (!scratched) sizeScratch(); });
       sizeScratch();
 
       /* ================= Confetti ================= */
+      const confettiParticles = [];
+      let confettiRunning = false;
       function confetti(from) {
-        if (reduce) return;
-        const c = $("#confetti"), x = c.getContext("2d"), dpr = Math.min(devicePixelRatio || 1, 2);
-        c.width = innerWidth * dpr; c.height = innerHeight * dpr;
-        const cols = ["#B08A45", "#D8BF8A", "#EDB8C0", "#CFC4E4", "#F4CDB0", "#B5CDB7"];
-        const r = from.getBoundingClientRect(); const ox = (r.left + r.width / 2) * dpr, oy = (r.top + r.height / 2) * dpr;
-        const P = Array.from({ length: 160 }, () => {
-          const a = Math.random() * Math.PI * 2, s = (Math.random() * 9 + 4) * dpr;
-          return { x: ox, y: oy, vx: Math.cos(a) * s, vy: Math.sin(a) * s - 6 * dpr, w: (Math.random() * 6 + 4) * dpr, h: (Math.random() * 4 + 3) * dpr, rot: Math.random() * 6, vr: (Math.random() - .5) * .3, c: cols[Math.floor(Math.random() * cols.length)], petal: Math.random() < .5 };
-        });
-        const t0 = performance.now();
-        (function frame(t) {
-          const el = t - t0; x.clearRect(0, 0, c.width, c.height);
-          P.forEach(p => {
-            p.vy += 0.22 * dpr; p.vx *= 0.985; p.vy *= 0.985; p.x += p.vx; p.y += p.vy; p.rot += p.vr;
-            x.save(); x.translate(p.x, p.y); x.rotate(p.rot); x.globalAlpha = Math.max(0, 1 - el / 4200); x.fillStyle = p.c;
-            if (p.petal) { x.beginPath(); x.ellipse(0, 0, p.w * .6, p.h * .5, 0, 0, 7); x.fill(); } else x.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-            x.restore();
+        const c = $("#confetti");
+        if (!c) return;
+        const x = c.getContext("2d");
+        const dpr = Math.min(devicePixelRatio || 1, 2);
+        const targetW = Math.round(window.innerWidth * dpr);
+        const targetH = Math.round(window.innerHeight * dpr);
+        if (c.width !== targetW || c.height !== targetH) {
+          c.width = targetW;
+          c.height = targetH;
+        }
+        const cols = ["#B08A45", "#D8BF8A", "#E5A93C", "#EDB8C0", "#E86F88", "#CFC4E4", "#F4CDB0", "#B5CDB7", "#FFD700", "#FF6B81"];
+        let ox = c.width / 2;
+        let oy = c.height * 0.38;
+        if (from && typeof from.getBoundingClientRect === "function") {
+          const r = from.getBoundingClientRect();
+          if (r.width > 0 && r.height > 0 && r.bottom > 0 && r.top < window.innerHeight) {
+            ox = (r.left + r.width / 2) * dpr;
+            oy = (r.top + r.height / 2) * dpr;
+          }
+        }
+        const count = 180;
+        for (let i = 0; i < count; i++) {
+          const a = Math.random() * Math.PI * 2;
+          const s = (Math.random() * 11 + 4.5) * dpr;
+          confettiParticles.push({
+            x: ox,
+            y: oy,
+            vx: Math.cos(a) * s,
+            vy: Math.sin(a) * s - 7 * dpr,
+            w: (Math.random() * 8 + 4) * dpr,
+            h: (Math.random() * 5 + 3) * dpr,
+            rot: Math.random() * 6.28,
+            vr: (Math.random() - .5) * .35,
+            c: cols[Math.floor(Math.random() * cols.length)],
+            petal: Math.random() < .45,
+            life: 1.0,
+            decay: (Math.random() * 0.0035 + 0.003)
           });
-          if (el < 4200) requestAnimationFrame(frame); else x.clearRect(0, 0, c.width, c.height);
-        })(t0);
+        }
+        if (!confettiRunning) {
+          confettiRunning = true;
+          requestAnimationFrame(function step() {
+            x.clearRect(0, 0, c.width, c.height);
+            for (let i = confettiParticles.length - 1; i >= 0; i--) {
+              const p = confettiParticles[i];
+              p.vy += 0.22 * dpr;
+              p.vx *= 0.985;
+              p.vy *= 0.985;
+              p.x += p.vx;
+              p.y += p.vy;
+              p.rot += p.vr;
+              p.life -= p.decay;
+              if (p.life <= 0 || p.y > c.height + 60) {
+                confettiParticles.splice(i, 1);
+                continue;
+              }
+              x.save();
+              x.translate(p.x, p.y);
+              x.rotate(p.rot);
+              x.globalAlpha = Math.max(0, p.life);
+              x.fillStyle = p.c;
+              if (p.petal) {
+                x.beginPath();
+                x.ellipse(0, 0, p.w * .6, p.h * .5, 0, 0, 7);
+                x.fill();
+              } else {
+                x.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+              }
+              x.restore();
+            }
+            if (confettiParticles.length > 0) {
+              requestAnimationFrame(step);
+            } else {
+              confettiRunning = false;
+              x.clearRect(0, 0, c.width, c.height);
+            }
+          });
+        }
       }
 
       /* ================= Countdown & links ================= */
@@ -3300,7 +3395,6 @@
 
       /* ================= Falling petals ================= */
       (function () {
-        if (reduce) return;
         const c = $("#petals"), x = c.getContext("2d");
         const cols = ["#EDB8C0", "#F2C9CF", "#F6EFE8", "#D8BF8A", "#CFC4E4", "#F4CDB0"];
         let W, H, dpr, P = [];
