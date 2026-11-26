@@ -1891,10 +1891,28 @@
 
     .footer-families {
       font-family: var(--serif);
-      font-size: 1.25rem;
+      font-size: clamp(1.05rem, 3vw, 1.25rem);
       color: var(--ink);
-      margin: 0 0 20px;
+      margin: 0 auto 24px;
+      max-width: 540px;
       font-weight: 500;
+      line-height: 1.65;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 4px 10px;
+    }
+
+    .footer-families .fam-item {
+      white-space: nowrap;
+    }
+
+    .footer-families .fam-entire {
+      flex-basis: 100%;
+      font-style: italic;
+      color: var(--ink-soft);
+      margin-top: 2px;
     }
 
     .footer-rsvp-box {
@@ -2697,7 +2715,7 @@
             <b>15 &amp; 16</b>
             <span class="side">Khanvel<br>Silvassa</span>
           </div>
-          <h3 class="vc-name">Gulmohar Suites</h3>
+          <h3 class="vc-name">Khanvel Resort</h3>
           <p class="vc-addr">
             Khanvel, Silvassa, Dadra and Nagar Haveli<br>
             and Daman and Diu – 396230
@@ -2964,12 +2982,20 @@
 
         <div class="footer-compliments">
           <p class="footer-sub">Best compliments from</p>
-          <p class="footer-families">Kasliwal family, relatives &amp; friends.</p>
+          <div class="footer-families">
+            <span class="fam-item">Chiranjilal Suresh–Seema,</span>
+            <span class="fam-item">Sanjay–Manju,</span>
+            <span class="fam-item">Sunil–Prem,</span>
+            <span class="fam-item">Prateek–Richa,</span>
+            <span class="fam-item">Vaibhav,</span>
+            <span class="fam-item">Panap</span>
+            <span class="fam-entire">&amp; entire Kasliwal family</span>
+          </div>
 
           <div class="footer-rsvp-box">
             <h4>RSVP</h4>
             <p>Kasliwal Family</p>
-            <p>Merta Road-Ichalkaranji</p>
+            <p>Merta Road – Ichalkaranji – Vapi</p>
           </div>
 
           <p class="footer-credit">Made with ❤️ by Shashwat Jain</p>
